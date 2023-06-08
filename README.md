@@ -16,6 +16,7 @@ end_date = "2020-03-07"
 
 ## Results:
 
-Results will be inside the Docker container and can be found at:
-/cromwell-bayesian-covid-model-demo/cromwell-executions/idmWorkflow/<docker cotainer id>/call-run_Model/execution/bayesian-covid-model-demo/scripts/results
-
+Results will be inside the Docker container.  You must replace DOCKER_CONTAINER_ID with the ID of the container below to access the results:
+~~~
+/cromwell-bayesian-covid-model-demo/cromwell-executions/idmWorkflow/DOCKER_CONTAINER_ID/call-run_Model/execution/bayesian-covid-model-demo/scripts/results
+~~~
