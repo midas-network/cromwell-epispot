@@ -1,5 +1,21 @@
 #!/bin/bash
 
+echo ""
+echo "******************************************************************************"
+echo "*       MIDAS Cromwell / Bayesian Model Demo                                 *"
+echo "*                                                                            *"
+echo "* This script demonstrates the execution of the                              *"
+echo "* Bayesian disease model (a Python library) using                            *"
+echo "* a WDL file run via the Cromwell workflow engine.                           *"
+echo "*                                                                            *"
+echo "* Cromwell: https://github.com/broadinstitute/cromwell                       *"
+echo "* Bayesian: https://github.com/midas-network/bayesian-covid-model-demo.git   *"
+echo "*                                                                            *"
+echo "* author: Jeff Stazer, jbs82@pitt.edu                                        *"
+echo "******************************************************************************"
+echo ""
+
+
 # https://stackoverflow.com/questions/7334754/correct-way-to-check-java-version-from-bash-script
 # returns the JDK version.
 # 8 for 1.8.0_nn, 9 for 9-ea etc, and "no_java" for undetected
@@ -42,8 +58,9 @@ java_ver="$(jdk_version)"
 if (( $java_ver > 10 ))
 then
 	java_installed=true
+  echo "  JAVA installed and acceptable version found"
 else
-	echo "This application requires a minimum JAVA version of 11."
+	echo "  Error: This application requires a minimum JAVA version of 11."
 	exit 1
 fi
 
@@ -51,8 +68,12 @@ echo "Checking DOCKER installation and version..."
 if [[ $(which docker) && $(docker --version) ]]
 then
 	docker_installed=true
+  echo "  Docker installation found"
 else
-	echo "This application requires docker to be installed."
+	echo "  Error: This application requires Docker to be installed."
+  echo "    Please install Docker using the installation instructions from:"
+  echo "      https://docs.docker.com/get-docker/"
+  echo "    Rerun this script once you've installed Docker."
 	exit 1
 fi 
 
@@ -62,14 +83,32 @@ fi
 echo "Pulling Docker library ..."
 docker pull python
 
-echo "Downloading Cromwell (if necessary) ..."
-FILE=cromwell-84.jar
-if test -f "$FILE"
-then
-	echo "$FILE exists"
+checksum="faf6e7996e1c2e9e4e71f2256f984e3a7782df9377fd2ccd32546f622d05cb2b  cromwell-84.jar"
+echo "Looking for cromwell-84.jar..."
+if [[ -f "cromwell-84.jar" ]]; then
+  echo "  cromwell-84.jar found."
 else
-	wget https://github.com/broadinstitute/cromwell/releases/download/84/cromwell-84.jar
+  echo "  cromwell-84.jar not found..."
+  if which wget >/dev/null; then
+    echo "  Downloading cromwell-84.jar via wget."
+    wget -q --show-progress https://github.com/broadinstitute/cromwell/releases/download/84/cromwell-84.jar
+ else
+    echo "  Error: Cannot download cromwell-84.jar, wget is not available."
+    echo "    Please install wget or download the following file to this directory:"
+    echo "      https://github.com/broadinstitute/cromwell/releases/download/84/cromwell-84.jar "
+    echo "    Rerun this script once you've either installed wget or downloaded cromwell-84.jar"
+    exit 1
+  fi
+fi
+
+echo "Verifying cromwell-84.jar..."
+if [[ $(shasum -a 256 cromwell-84.jar) = $checksum ]]; then
+  echo "  cromwell-84.jar verified!";
+else
+  echo "  Error: Couldn't verify cromwell-84.jar, please delete the .jar and run this script again."
+  exit 1
 fi
 
 echo "Running Cromwell workflow ..."
-java -jar cromwell-84.jar run idmWorkflow.wdl
+java -Dconfig.file=$(pwd)/cromwell_config.conf -jar cromwell-84.jar run idmWorkflow.wdl
+#java -Dconfig.file=/Users/jbs82/Documents/dev/cromwell-baysian-model-covid/app.conf -jar cromwell-84.jar run idmWorkflow.wdl

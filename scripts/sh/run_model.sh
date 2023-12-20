@@ -18,3 +18,4 @@ end_date=$4
 cd $(git_repository_name)
 cd scripts
 python run_sir.py ${state} --start ${start_date} --end ${end_date}
+
