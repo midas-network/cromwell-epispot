@@ -9,7 +9,7 @@ function git_repository_name(){
         echo ${repoarr[0]}
 }
 
-CWD=$(pwd)
+CWD="$(pwd)"
 git_repository_url=$1
 git_repository_name
 

@@ -36,7 +36,7 @@ workflow idmWorkflow {
             run_model_script = "./scripts/sh/run_model.sh",
             move_results_script = "./scripts/sh/move_results.sh",
             git_repository_url = "https://github.com/midas-network/bayesian-covid-model-demo.git",
-	        state = "GA",
+	        state = "WA",
 	        start_date = "2020-03-05",
 	        end_date = "2020-03-07"
     }

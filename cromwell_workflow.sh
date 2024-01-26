@@ -110,5 +110,16 @@ else
 fi
 
 echo "Running Cromwell workflow ..."
-java -Dconfig.file=$(pwd)/cromwell_config.conf -jar cromwell-84.jar run idmWorkflow.wdl
+java -Dconfig.file=cromwell_config.conf -jar cromwell-84.jar run idmWorkflow.wdl
 #java -Dconfig.file=/Users/jbs82/Documents/dev/cromwell-baysian-model-covid/app.conf -jar cromwell-84.jar run idmWorkflow.wdl
+
+echo ""
+echo "******************************************************************************"
+echo "*       MIDAS Cromwell / Bayesian Model Demo                                 *"
+echo "*                                                                            *"
+echo "* Cromwell workflow has completed.  Results can be found at:                 *"
+echo "$(pwd)/results"
+echo "*                                                                            *
+echo "******************************************************************************"
+echo ""
+
