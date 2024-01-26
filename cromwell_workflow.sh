@@ -119,7 +119,7 @@ echo "*       MIDAS Cromwell / Bayesian Model Demo                              
 echo "*                                                                            *"
 echo "* Cromwell workflow has completed.  Results can be found at:                 *"
 echo "$(pwd)/results"
-echo "*                                                                            *
+echo "*                                                                            *"
 echo "******************************************************************************"
 echo ""
 
