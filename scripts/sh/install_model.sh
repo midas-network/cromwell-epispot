@@ -16,6 +16,10 @@ git_repository_name
 git clone "$git_repository_url"
 
 cd $(git_repository_name)
-pip install -e .
+pip install -r requirements/pre-requirements.txt
+pip install -r requirements/requirements.txt
+pip install -r requirements/requirements-nightly.txt
+pip install -r requirements/requirements-dev.txt
+
 cd $CWD
  

@@ -11,11 +11,12 @@ function git_repository_name(){
 
 git_repository_url=$1
 git_repository_name
-state=$2
-start_date=$3
-end_date=$4
+start=$2
+stop=$3
+num_samples=$4
+pop_size=$5
 
 cd $(git_repository_name)
-cd scripts
-python run_sir.py ${state} --start ${start_date} --end ${end_date}
+cd scripts/run_model
+python epispot.py --start ${start} --stop ${stop} --num_samples ${num_samples} --pop_size ${pop_size}
 
