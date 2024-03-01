@@ -1,7 +1,21 @@
 #!/bin/bash
 
-# wget https://pypi.tuna.tsinghua.edu.cn/packages/71/42/5a97178a0e48d3647567917e72585c44d4d1cb521753af3b979e1c21e821/jaxlib-0.1.62-cp36-none-manylinux2010_x86_64.whl#sha256=8ae71b54b86f140a840b8c097b015e6fde5c323cc7b2ea716b2707a66370b01e
-wget https://github.com/midas-network/jaxlib-0.1.62/raw/master/jaxlib-0.1.62-cp36-none-manylinux2010_x86_64.whl
-pip install jaxlib-0.1.62-cp36-none-manylinux2010_x86_64.whl 
-
 pip install tabulate
+pip install matplotlib~=3.8.3
+pip install pandas
+pip install numpy~=1.24.2
+pip install dill~=0.3.6
+pip install plotly~=5.14.1
+pip install pytest~=7.4.0
+pip install coverage~=7.4.1
+pip install codecov~=2.1.12
+pip install pdoc3~=0.10.0
+pip install SciencePlots~=2.1.0
+pip install lock-requirements~=0.1.1
+pip install isort~=5.12.0
+pip install pycodestyle~=2.10.0
+pip install pep8-naming~=0.13.3
+pip install flake8-noqa~=1.3.0
+pip install flake8~=6.0.0
+pip install ttws~=0.8.5
+pip install autopep8~=2.0.1

@@ -21,7 +21,7 @@ task run_Model {
         ${move_results_script}
     }
     runtime {
-        docker: "python:3.6.15-bullseye"
+        docker: "python:3.9.18-slim-bullseye"
     }
     output {
         File response = stdout()
@@ -36,11 +36,11 @@ workflow idmWorkflow {
             install_model_script = "./scripts/sh/install_model.sh",
             run_model_script = "./scripts/sh/run_model.sh",
             move_results_script = "./scripts/sh/move_results.sh",
-            git_repository_url = "https://github.com/midas-network/bayesian-covid-model-demo.git",
+            git_repository_url = "https://github.com/epispot/epispot",
             start = 0,
             stop = 50,
             num_samples = 200,
-            pop_size = 1.78e6
+            pop_size = "1.78e6"
     }
 }
 

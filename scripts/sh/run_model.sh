@@ -16,7 +16,10 @@ stop=$3
 num_samples=$4
 pop_size=$5
 
+echo "POP SIZE: ${pop_size}" 
+
 cd $(git_repository_name)
-cd scripts/run_model
-python epispot.py --start ${start} --stop ${stop} --num_samples ${num_samples} --pop_size ${pop_size}
+# echo "${PWD}"
+cp /midas-epispot/epispot_run.py . 
+python epispot_run.py ${start} ${stop} ${num_samples} "${pop_size}"
 

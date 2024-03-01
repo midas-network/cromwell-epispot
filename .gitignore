@@ -1,7 +1,8 @@
-
+__pycache__*
 cromwell-executions/
 cromwell-workflow-logs/
-results/
+results/*.png
+results/*.txt
 
 .DS_Store
 cromwell-84.jar
