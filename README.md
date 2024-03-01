@@ -17,7 +17,7 @@ Please note: The cromwell workflow script will check for these requirements and 
 start = 0,
 stop = 50,
 num_samples = 200,
-pop_size = 1.78e6
+pop_size = "1.78e6"
 ~~~
  2. From the command line execute the Cromwell workflow
 ~~~
