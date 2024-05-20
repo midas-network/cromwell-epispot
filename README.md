@@ -6,7 +6,7 @@ This project demostrates running Epispot using Cromwell, Python, and Docker.
 [Cromwell](https://github.com/broadinstitute/cromwell) is an open-source Workflow Management System for bioinformatics.
 
 ## Model:
-- [Epispot](https://github.com/epispot/epispot): A Python package for the mathematical modeling of infectious diseases via compartmental models.
+[Epispot](https://github.com/epispot/epispot): A Python package for the mathematical modeling of infectious diseases via compartmental models.
 
 ## Execution:
 ### Pre-requisites:
