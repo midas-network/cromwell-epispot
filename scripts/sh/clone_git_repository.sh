@@ -9,17 +9,13 @@ function git_repository_name(){
         echo ${repoarr[0]}
 }
 
+CWD="$(pwd)"
 git_repository_url=$1
 git_repository_name
-start=$2
-stop=$3
-num_samples=$4
-pop_size=$5
 
-echo "POP SIZE: ${pop_size}" 
+git clone "$git_repository_url"
 
 cd $(git_repository_name)
-# echo "${PWD}"
-cp /midas-epispot/epispot_run.py . 
-python epispot_run.py ${start} ${stop} ${num_samples} "${pop_size}"
-
+#pip install -e .
+cd $CWD
+ 
