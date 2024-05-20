@@ -1,8 +1,12 @@
 __pycache__*
 cromwell-executions/
 cromwell-workflow-logs/
+cromwell*.jar
+womtool*.*
+
 results/*.png
 results/*.txt
+model_output/
 
 .DS_Store
 cromwell-84.jar
