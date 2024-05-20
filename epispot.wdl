@@ -18,6 +18,7 @@ task run_epispot {
         String model_output_folder
         String model_output_file_types
         String model_runtime_docker
+        Int scatter_levels
     }
 
     String model_output_file_listing = "${name_of_this_model_run}_output_files.txt"
@@ -27,8 +28,8 @@ task run_epispot {
         ${clone_repository_script} "${model_git_repository}"
         ${install_model_script} "${model_git_repository}"
         ${run_model_script} "${model_executable}" "${model_git_repository}" "${start}" "${stop}" "${num_samples}" "${pop_size}"
-        python3 ${copy_model_output_script} "${model_output_folder}" "${model_output_file_types}" "${model_output_file_listing}" "${name_of_this_model_run}"
-        ${copy_cromwell_logs_script} "${model_output_folder}" "${name_of_this_model_run}"
+        python3 ${copy_model_output_script} "${scatter_levels}" "${model_output_folder}" "${model_output_file_types}" "${model_output_file_listing}" "${name_of_this_model_run}"
+        ${copy_cromwell_logs_script} "${scatter_levels}" "${model_output_folder}" "${name_of_this_model_run}"
     }
     runtime {
         docker: "${model_runtime_docker}"
@@ -82,7 +83,8 @@ workflow modelWorkflow {
                             model_executable = model_executable,
                             model_output_folder = model_output_folder,
                             model_output_file_types = model_output_file_types,
-                            model_runtime_docker = model_runtime_docker
+                            model_runtime_docker = model_runtime_docker,
+                            scatter_levels = 4
                     }
                 }
             }
